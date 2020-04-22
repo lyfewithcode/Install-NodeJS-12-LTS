@@ -1,0 +1,91 @@
+How To Install Node.js 12 on Ubuntu / Debian
+
+Node.js is a powerful JavaScript runtime built on Chrome’s V8 engine for building fast
+and scalable network applications. It is an open source server-side JavaScript which runs
+on various platforms – Linux, Windows, Unix, and macOS. In this guide, we will discuss
+the installation of Node.js 12 LTS on Ubuntu / Debian / Linux Mint.
+
+Node.js 12 is now the LTS release available for installation on Linux, macOS and
+Windows operating systems. This release will receive Long-term Support until 2022-04-
+30. Node.js releases appearing each April convert to LTS each October. Below are the
+steps required to install Node.js 12 on Ubuntu / Debian / Linux Mint.
+
+Step 1: Update system
+
+As a norm, we work on an updated system to ensure we don’t have dependency issues.
+------------------------------------------------
+sudo apt update
+sudo apt -y upgrade
+------------------------------------------------
+
+Step 2: Add Node.js APT Repository
+
+All releases of Node.js are derivable from the official APT repository. However, this
+needs to be added to your system manually.
+------------------------------------------------
+sudo apt update
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+------------------------------------------------
+
+Step 3: Install Node.js 12 on Ubuntu / Debian
+
+Node.js repository has been added, The next step is installation of Node.js 12 on
+Ubuntu / Debian. Running the following commands is all that’s needed for the installation.
+------------------------------------------------
+sudo apt -y install nodejs
+------------------------------------------------
+
+You can as well install development tools used to build native addons:
+------------------------------------------------
+sudo apt -y  install gcc g++ make
+------------------------------------------------
+
+Confirm Node.js 12 installation by checking the version installed.
+------------------------------------------------
+$ node --version
+v12.10.0
+
+$ npm --version
+6.10.3
+------------------------------------------------
+
+Step 4: Test Node.js on Ubuntu/Debian
+
+Create an example Node.js web server which responds with ‘Hello, World!‘.
+------------------------------------------------
+$ mkdir ~/projects
+$ cd ~/projects
+------------------------------------------------
+
+Create a new file called hello-world.js with the following content.
+===================text editor==================
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+================================================
+
+Save the file and enter the following command in your terminal.
+------------------------------------------------
+$ node hello-world.js
+------------------------------------------------
+
+An output like this in the terminal indicates Node.js server is running:
+------------------------------------------------
+Server running at http://127.0.0.1:3000
+------------------------------------------------
+
+If you open the link on your web browser, “Hello, World!” string should be displayed.
+
+Visit a relevant Node.js documentation page to read more.
